@@ -4,14 +4,17 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author Ushizou
  */
-public class Usuario {
-
-    private String nome;
-    private String email;
-    private String senha;
-
+public class Remedio {
+    
+    String nome;
+    String descricao;
+    float qtdPilulas;
+    Date dataInicioMedicacao; 
+    float preço;
 }

@@ -4,14 +4,15 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author Ushizou
  */
-public class Usuario {
-
-    private String nome;
-    private String email;
-    private String senha;
-
+public class Agenda {
+    
+    Date data;
+    String nome; 
+    String descricao;
 }

@@ -8,10 +8,10 @@ package model;
  *
  * @author Ushizou
  */
-public class Usuario {
-
-    private String nome;
-    private String email;
-    private String senha;
-
+public class Pessoa {
+    
+    String nome; 
+    int idade; 
+    float altura; 
+    float peso;
 }

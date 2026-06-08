@@ -8,6 +8,11 @@ package model;
  *
  * @author Ushizou
  */
-public interface OperacoesDAO {
-    
+public interface OperacoesDAO<C> {
+
+    public boolean add(C o);
+
+    public boolean remove(C o);
+
+    public C find(C o);
 }
