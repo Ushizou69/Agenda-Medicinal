@@ -4,7 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/nicol/OneDrive/Documentos/NetBeansProjects/Agenda_Medicinal/src/model/OperacoesDAO.java</file>
-            <file>file:/C:/Users/nicol/OneDrive/Documentos/NetBeansProjects/Agenda_Medicinal/src/model/Usuario.java</file>
+            <file>file:/C:/Users/nicol/OneDrive/Documentos/NetBeansProjects/Agenda_Medicinal/src/model/Remedio.java</file>
+            <file>file:/C:/Users/nicol/OneDrive/Documentos/NetBeansProjects/Agenda_Medicinal/src/model/Pessoa.java</file>
+            <file>file:/C:/Users/nicol/OneDrive/Documentos/NetBeansProjects/Agenda_Medicinal/src/model/CadastroDAO.java</file>
         </group>
     </open-files>
 </project-private>

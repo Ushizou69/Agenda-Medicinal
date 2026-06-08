@@ -14,11 +14,6 @@ public class CadastroDAO implements OperacoesDAO<Cadastro> {
 
     private TreeSet<Cadastro> lista = new TreeSet<Cadastro>();
 
-//    void getDados(); 
-//    Cadastro acharPorNome(); 
-//    Cadastro acharPorQtdPilulas();
-// A implementar
-    
     @Override
     public boolean add(Cadastro c) {
         if (c instanceof Cadastro) {
@@ -51,4 +46,31 @@ public class CadastroDAO implements OperacoesDAO<Cadastro> {
         return null;
     }
 
+    public TreeSet getDados() {
+        return lista;
+    }
+
+    public Cadastro acharPorNome(String nome) {
+
+        for (Cadastro cadastro : lista) {
+
+            if (nome.equals(Cadastro.getNome())) {
+                return cadastro;
+            }
+        }
+
+        return null;
+    }
+
+    public Cadastro acharPorQtdPilulas(int qtdPilulas) {
+
+        for (Cadastro cadastro : lista) {
+
+            if (qtdPilulas == Remedio.getQtdPilulas()) {
+                return cadastro;
+            }
+        }
+
+        return null;
+    }
 }
