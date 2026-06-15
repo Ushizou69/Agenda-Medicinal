@@ -26,6 +26,14 @@ public class Remedio {
         this.preço = preço;
     }
 
+    public int calcularDiasRestantes(int polulasPorDia) {
+    return this.qtdPilulas / pilulasPorDia;
+    }
+
+    public enum StatusRemedio {
+    DISPONIVEL, ACABANDO, ESGOTADO
+    }
+
     public String getNome() {
         return nome;
     }

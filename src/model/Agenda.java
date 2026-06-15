@@ -15,4 +15,10 @@ public class Agenda {
     Date data;
     String nome; 
     String descricao;
+    private PrioridadeTarefa prioridade;
+    private boolean concluida;
+}
+
+public enum PrioridadeTarefa { //adicionado
+    BAIXA, MEDIA, ALTA, URGENTE
 }

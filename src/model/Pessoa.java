@@ -42,5 +42,14 @@ public class Pessoa {
     public void setPeso(float peso) {
         this.peso = peso;
     }
+
+    public void setAltura(float altura) { // setter ausente
+    this.altura = altura;
+    }
+
+    public float calcularIMC() {
+    if (altura == 0) throw new ArithmeticException("Altura não pode ser zero");
+    return peso / (altura * altura);
+    }
     
 }
