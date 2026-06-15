@@ -44,4 +44,12 @@ public class Usuario {
         this.senha = senha;
     }
 
+    public boolean validarEmail() {
+    return email != null && email.contains("@") && email.contains(".");
+    }
+
+    public boolean validarSenha() {
+    return senha != null && senha.length() >= 6;
+    }
+
 }
