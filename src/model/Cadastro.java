@@ -4,16 +4,25 @@
  */
 package model;
 
+import java.util.Objects;
+
 /**
  *
  * @author Ushizou
  */
-class Cadastro {
+public class Cadastro {
 
     private Pessoa pessoa;
     private Usuario usuario;
-    private static String nome;
+    private String nome;
     private Remedio remedio;
+
+    public Cadastro(Pessoa pessoa, Usuario usuario, String nome, Remedio remedio) {
+        this.pessoa = pessoa;
+        this.usuario = usuario;
+        this.nome = nome;
+        this.remedio = remedio;
+    }
 
     public Pessoa getPessoa() {
         return pessoa;
@@ -23,7 +32,7 @@ class Cadastro {
         return usuario;
     }
 
-    public static String getNome() {
+    public String getNome() {
         return nome;
     }
 
@@ -31,12 +40,68 @@ class Cadastro {
         return remedio;
     }
 
-    public static void setNome(String nome) {
-        Cadastro.nome = nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public void setRemedio(Remedio remedio) {
         this.remedio = remedio;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.pessoa);
+        hash = 89 * hash + Objects.hashCode(this.usuario);
+        hash = 89 * hash + Objects.hashCode(this.nome);
+        hash = 89 * hash + Objects.hashCode(this.remedio);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cadastro other = (Cadastro) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.pessoa, other.pessoa)) {
+            return false;
+        }
+        if (!Objects.equals(this.usuario, other.usuario)) {
+            return false;
+        }
+        return Objects.equals(this.remedio, other.remedio);
+    }
+
+    @Override
+    public String toString() {
+        return """
+           ========================================
+                     DADOS DO CADASTRO
+           ========================================
+           Nome do Cadastro: %s
+           
+           %s
+           
+           %s
+           
+           %s
+           ========================================
+           """.formatted(
+                nome,
+                pessoa,
+                usuario,
+                remedio
+        );
     }
 
 }

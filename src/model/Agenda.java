@@ -4,7 +4,7 @@
  */
 package model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -12,13 +12,13 @@ import java.util.Date;
  */
 public class Agenda {
     
-    Date data;
-    String nome; 
-    String descricao;
-    private PrioridadeTarefa prioridade;
+    private LocalDateTime data;
+    private String nome; 
+    private String descricao;
+    private Tarefa tarefa;
     private boolean concluida;
+    
+    
 }
 
-public enum PrioridadeTarefa { //adicionado
-    BAIXA, MEDIA, ALTA, URGENTE
-}
+

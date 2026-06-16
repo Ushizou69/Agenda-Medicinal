@@ -54,7 +54,7 @@ public class CadastroDAO implements OperacoesDAO<Cadastro> {
 
         for (Cadastro cadastro : lista) {
 
-            if (nome.equals(Cadastro.getNome())) {
+            if (nome.equals(cadastro.getNome())) {
                 return cadastro;
             }
         }
@@ -66,7 +66,7 @@ public class CadastroDAO implements OperacoesDAO<Cadastro> {
 
         for (Cadastro cadastro : lista) {
 
-            if (qtdPilulas == Remedio.getQtdPilulas()) {
+            if (cadastro.getRemedio().getQtdPilulasAtual() == qtdPilulas) {
                 return cadastro;
             }
         }
