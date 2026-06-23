@@ -27,7 +27,7 @@ public class Usuario {
         this.senha = senha;
 
         if (!validarSenha()) {
-            throw new IllegalArgumentException("Email inválido");
+            throw new IllegalArgumentException("Senha inválido");
         }
     }
 

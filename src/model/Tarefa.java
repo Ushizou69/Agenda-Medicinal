@@ -4,7 +4,7 @@
  */
 package model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -15,17 +15,18 @@ public class Tarefa implements Comparable<Tarefa> {
 
     private String nome;
     private String descricao;
-    private LocalDate dataLimite;
+    private LocalDateTime dataLimite;
     private Categoria categoria;
     private int prioridade;
     private boolean concluida;
 
-    public Tarefa(String nome, String descricao, LocalDate dataLimite, Categoria categoria, int prioridade) {
+    public Tarefa(String nome, String descricao, LocalDateTime dataLimite, Categoria categoria, int prioridade, boolean concluida) {
         this.nome = nome;
         this.descricao = descricao;
         this.dataLimite = dataLimite;
         this.categoria = categoria;
         setPrioridade(prioridade);
+        this.concluida = concluida;
     }
 
     public String getNome() {
@@ -36,7 +37,7 @@ public class Tarefa implements Comparable<Tarefa> {
         return descricao;
     }
 
-    public LocalDate getDataLimite() {
+    public LocalDateTime getDataLimite() {
         return dataLimite;
     }
 
@@ -60,7 +61,7 @@ public class Tarefa implements Comparable<Tarefa> {
         this.descricao = descricao;
     }
 
-    public void setDataLimite(LocalDate dataLimite) {
+    public void setDataLimite(LocalDateTime dataLimite) {
         this.dataLimite = dataLimite;
     }
 
@@ -79,7 +80,7 @@ public class Tarefa implements Comparable<Tarefa> {
     }
 
     public void dataLimite() {
-        LocalDate hoje = LocalDate.now();
+        LocalDateTime hoje = LocalDateTime.now();
 
         if (hoje.isAfter(dataLimite)) {
             System.out.println("O prazo expirou!");
@@ -137,6 +138,14 @@ public class Tarefa implements Comparable<Tarefa> {
 
     @Override
     public String toString() {
-        return "Tarefa{" + "nome=" + nome + " descricao=" + descricao + ", datalimite=" + dataLimite + ", categoria=" + categoria + ", prioridade=" + prioridade + ", concluida=" + concluida + '}';
+        return """
+            \n
+            Nome           : %s
+            Descricao      : %s
+            Data Limite    : %s
+            Categoria      : %s
+            Prioridade     : %s
+            Status:        : %s
+           """.formatted(nome, descricao, dataLimite, categoria, prioridade, concluida ? "Concluído" : "Pendente");
     }
 }

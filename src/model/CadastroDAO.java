@@ -4,7 +4,7 @@
  */
 package model;
 
-import java.util.TreeSet;
+import java.util.HashSet;
 
 /**
  *
@@ -12,7 +12,7 @@ import java.util.TreeSet;
  */
 public class CadastroDAO implements OperacoesDAO<Cadastro> {
 
-    private TreeSet<Cadastro> lista = new TreeSet<Cadastro>();
+    private HashSet<Cadastro> lista = new HashSet<Cadastro>();
 
     @Override
     public boolean add(Cadastro c) {
@@ -46,7 +46,7 @@ public class CadastroDAO implements OperacoesDAO<Cadastro> {
         return null;
     }
 
-    public TreeSet getDados() {
+    public HashSet getDados() {
         return lista;
     }
 

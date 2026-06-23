@@ -5,8 +5,9 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.TreeSet;
+import java.util.HashSet;
 
 /**
  *
@@ -14,7 +15,7 @@ import java.util.TreeSet;
  */
 public class TarefaDAO implements OperacoesDAO<Tarefa> {
 
-    private TreeSet<Tarefa> lista = new TreeSet<Tarefa>();
+    private HashSet<Tarefa> lista = new HashSet<Tarefa>();
 
     @Override
     public boolean add(Tarefa t) {
@@ -75,7 +76,7 @@ public class TarefaDAO implements OperacoesDAO<Tarefa> {
         return null;
     }
 
-    public Tarefa acharPorDatalimite(LocalDate data) {
+    public Tarefa acharPorDatalimite(LocalDateTime data) {
 
         for (Tarefa tarefa : lista) {
 

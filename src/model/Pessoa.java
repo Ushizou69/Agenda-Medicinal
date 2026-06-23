@@ -52,7 +52,7 @@ public class Pessoa {
         this.peso = peso;
     }
 
-    public void setAltura(Double altura) { // setter ausente
+    public void setAltura(Double altura) {
         this.altura = altura;
     }
 
