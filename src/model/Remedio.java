@@ -120,7 +120,51 @@ public class Remedio {
         this.pilulasPorDia = pilulasPorDia;
     }
 
-    
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 13 * hash + Objects.hashCode(this.nome);
+        hash = 13 * hash + Objects.hashCode(this.descricao);
+        hash = 13 * hash + this.qtdPilulasAtual;
+        hash = 13 * hash + Objects.hashCode(this.dataInicioMedicacao);
+        hash = 13 * hash + Objects.hashCode(this.dataFinalMedicacao);
+        hash = 13 * hash + (int) (Double.doubleToLongBits(this.preco) ^ (Double.doubleToLongBits(this.preco) >>> 32));
+        hash = 13 * hash + this.pilulasPorDia;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Remedio other = (Remedio) obj;
+        if (this.qtdPilulasAtual != other.qtdPilulasAtual) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.preco) != Double.doubleToLongBits(other.preco)) {
+            return false;
+        }
+        if (this.pilulasPorDia != other.pilulasPorDia) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.descricao, other.descricao)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataInicioMedicacao, other.dataInicioMedicacao)) {
+            return false;
+        }
+        return Objects.equals(this.dataFinalMedicacao, other.dataFinalMedicacao);
+    }
 
     @Override
     public String toString() {

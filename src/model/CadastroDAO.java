@@ -50,11 +50,11 @@ public class CadastroDAO implements OperacoesDAO<Cadastro> {
         return lista;
     }
 
-    public Cadastro acharPorNome(String nome) {
+    public Cadastro acharPorUsuario(Usuario usuario) {
 
         for (Cadastro cadastro : lista) {
 
-            if (nome.equals(cadastro.getNome())) {
+            if (usuario.getNome().equals(cadastro.getUsuario().getNome())) {
                 return cadastro;
             }
         }

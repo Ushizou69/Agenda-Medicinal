@@ -14,13 +14,11 @@ public class Cadastro {
 
     private Pessoa pessoa;
     private Usuario usuario;
-    private String nome;
     private Remedio remedio;
 
-    public Cadastro(Pessoa pessoa, Usuario usuario, String nome, Remedio remedio) {
+    public Cadastro(Pessoa pessoa, Usuario usuario, Remedio remedio) {
         this.pessoa = pessoa;
         this.usuario = usuario;
-        this.nome = nome;
         this.remedio = remedio;
     }
 
@@ -32,16 +30,9 @@ public class Cadastro {
         return usuario;
     }
 
-    public String getNome() {
-        return nome;
-    }
 
     public Remedio getRemedio() {
         return remedio;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public void setRemedio(Remedio remedio) {
@@ -53,7 +44,6 @@ public class Cadastro {
         int hash = 7;
         hash = 89 * hash + Objects.hashCode(this.pessoa);
         hash = 89 * hash + Objects.hashCode(this.usuario);
-        hash = 89 * hash + Objects.hashCode(this.nome);
         hash = 89 * hash + Objects.hashCode(this.remedio);
         return hash;
     }
@@ -70,9 +60,7 @@ public class Cadastro {
             return false;
         }
         final Cadastro other = (Cadastro) obj;
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
+        
         if (!Objects.equals(this.pessoa, other.pessoa)) {
             return false;
         }
@@ -88,7 +76,6 @@ public class Cadastro {
            ========================================
                      DADOS DO CADASTRO
            ========================================
-           Nome do Cadastro: %s
            
            %s
            
@@ -97,7 +84,6 @@ public class Cadastro {
            %s
            ========================================
            """.formatted(
-                nome,
                 pessoa,
                 usuario,
                 remedio
