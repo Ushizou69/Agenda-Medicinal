@@ -17,17 +17,17 @@ public class Usuario {
     private String senha;
 
     public Usuario(String nome, String email, String senha) {
+
         this.nome = nome;
         this.email = email;
-
-        if (!validarEmail()) {
-            throw new IllegalArgumentException("Email inválido");
-        }
-
         this.senha = senha;
 
+        if (!validarEmail()) {
+            throw new IllegalArgumentException("Email invalido");
+        }
+
         if (!validarSenha()) {
-            throw new IllegalArgumentException("Senha inválido");
+            throw new IllegalArgumentException("Senha invalida");
         }
     }
 

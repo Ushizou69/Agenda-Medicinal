@@ -4,8 +4,10 @@
  */
 package view;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Scanner;
 import model.*;
 
 /**
@@ -15,31 +17,245 @@ import model.*;
 public class main {
 
     public static void main(String[] args) {
-        Usuario u1 = new Usuario("Jeferson", "adshasjdha@ajshdalsdhl.com", "123456");
-        Pessoa p1 = new Pessoa("Jeferson Pereira", 28, 1.80, 92.0);
-        Remedio r1 = new Remedio("Ibuprufeno 500mg", "Remedio", 50, LocalDate.of(2026, 05, 02), 18.95, 1);
+        Scanner sc = new Scanner(System.in);
 
-        Usuario u2 = new Usuario("Carlos", "carlos@gmail.com", "123456");
+        CadastroDAO dao = new CadastroDAO();
+        Agenda agendaAtual = null;
 
-        Pessoa p2 = new Pessoa("Carlos Silva", 25, 1.75, 78.5);
+        int opcao;
 
-        Remedio r2 = new Remedio("Paracetamol 750mg","Tomar 1 comprimido a cada 8 horas em caso de febre", 24, LocalDate.of(2026, 6, 25), 15.90, 3);
+        try {
+            do {
+                System.out.println("\n===== MENU =====");
+                System.out.println("1 - Cadastrar usuario/pessoa/remedio");
+                System.out.println("2 - Listar cadastros");
+                System.out.println("3 - Buscar cadastro por usuario");
+                System.out.println("4 - Criar tarefa e agenda");
+                System.out.println("5 - Mostrar agenda atual");
+                System.out.println("0 - Sair");
+                System.out.print("Escolha uma opcaoo: ");
+                opcao = Integer.parseInt(sc.nextLine());
 
-        CadastroDAO dao1 = new CadastroDAO();
-        Cadastro c1 = new Cadastro(p1, u1, r1);
-        Cadastro c2 = new Cadastro(p2, u2, r2);
-        dao1.add(c1);
-        dao1.add(c2);
-        System.out.println(c1);
+                switch (opcao) {
 
-        Tarefa t1 = new Tarefa("Tomar remedio", "tomar remedio para gripe", LocalDateTime.of(2026, 06, 02, 14, 30), Categoria.ANTIBIOTICO, 2, false);
-        Agenda a1 = new Agenda(LocalDateTime.of(2026, 06, 02, 14, 30), "Remedios", "tomar remedio dia 02", t1, false);
+                    case 1 -> {
+                        System.out.println("\n=== CADASTRO ===");
 
-        System.out.println(a1);
-        System.out.println(dao1.acharPorUsuario(u2));
+                        // -------- USUARIO --------
+                        System.out.print("Nome do usuario: ");
+                        String nomeUsuario = sc.nextLine();
+
+                        System.out.print("Email do usuario: ");
+                        String email = sc.nextLine();
+
+                        System.out.print("Senha do usuario: ");
+                        String senha = sc.nextLine();
+
+                        Usuario usuario = new Usuario(nomeUsuario, email, senha);
+
+                        // -------- PESSOA --------
+                        System.out.print("Nome da pessoa: ");
+                        String nomePessoa = sc.nextLine();
+
+                        System.out.print("Idade: ");
+                        int idade = Integer.parseInt(sc.nextLine());
+
+                        System.out.print("Altura (ex: 1.75): ");
+                        double altura = Double.parseDouble(sc.nextLine());
+
+                        System.out.print("Peso (ex: 78.5): ");
+                        double peso = Double.parseDouble(sc.nextLine());
+
+                        Pessoa pessoa = new Pessoa(nomePessoa, idade, altura, peso);
+
+                        // -------- REMEDIO --------
+                        System.out.print("Nome do remedio: ");
+                        String nomeRemedio = sc.nextLine();
+
+                        System.out.print("Descricao do remedio: ");
+                        String descricao = sc.nextLine();
+
+                        System.out.print("Quantidade de pilulas: ");
+                        int qtdPilulas = Integer.parseInt(sc.nextLine());
+
+                        System.out.print("Data de inicio da medicacao - ano: ");
+                        int ano = Integer.parseInt(sc.nextLine());
+
+                        System.out.print("Mes: ");
+                        int mes = Integer.parseInt(sc.nextLine());
+
+                        System.out.print("Dia: ");
+                        int dia = Integer.parseInt(sc.nextLine());
+
+                        LocalDate dataInicio = LocalDate.of(ano, mes, dia);
+
+                        System.out.print("Preco do remedio: ");
+                        double preco = Double.parseDouble(sc.nextLine());
+
+                        System.out.print("Pilulas por dia: ");
+                        int pilulasPorDia = Integer.parseInt(sc.nextLine());
+
+                        Remedio remedio = new Remedio(
+                                nomeRemedio,
+                                descricao,
+                                qtdPilulas,
+                                dataInicio,
+                                preco,
+                                pilulasPorDia
+                        );
+
+                        Cadastro cadastro = new Cadastro(pessoa, usuario, remedio);
+                        dao.add(cadastro);
+
+                        System.out.println("\nCadastro realizado com sucesso!");
+                        System.out.println(cadastro);
+                    }
+
+                    case 2 -> {
+                        System.out.println("\n=== LISTA DE CADASTROS ===");
+                        dao.getDados();
+                    }
+
+                    case 3 -> {
+                        System.out.println("\n=== BUSCAR CADASTRO POR USUARIO ===");
+
+                        System.out.print("Nome do usuario: ");
+                        String nomeUsuario = sc.nextLine();
+
+                        System.out.print("Email do usuario: ");
+                        String email = sc.nextLine();
+
+                        System.out.print("Senha do usuario: ");
+                        String senha = sc.nextLine();
+
+                        Usuario usuarioBusca = new Usuario(nomeUsuario, email, senha);
+
+                        Cadastro resultado = dao.acharPorUsuario(usuarioBusca);
+
+                        if (resultado != null) {
+                            System.out.println("Cadastro encontrado:");
+                            System.out.println(resultado);
+                        } else {
+                            System.out.println("Usuario nao encontrado.");
+                        }
+                    }
+
+                    case 4 -> {
+                        System.out.println("\n=== CRIAR TAREFA E AGENDA ===");
+
+                        System.out.print("Titulo da tarefa: ");
+                        String titulo = sc.nextLine();
+
+                        System.out.print("Descricao da tarefa: ");
+                        String descricaoTarefa = sc.nextLine();
+
+                        System.out.println("Data e hora da tarefa:");
+
+                        System.out.print("Ano: ");
+                        int ano = Integer.parseInt(sc.nextLine());
+
+                        System.out.print("Mes: ");
+                        int mes = Integer.parseInt(sc.nextLine());
+
+                        System.out.print("Dia: ");
+                        int dia = Integer.parseInt(sc.nextLine());
+
+                        System.out.print("Hora: ");
+                        int hora = Integer.parseInt(sc.nextLine());
+
+                        System.out.print("Minuto: ");
+                        int minuto = Integer.parseInt(sc.nextLine());
+
+                        LocalDateTime dataHora = LocalDateTime.of(ano, mes, dia, hora, minuto);
+
+                        Categoria categoria = null;
+
+                        while (categoria == null) {
+                            System.out.println("\nEscolha a categoria:");
+                            System.out.println("1 - ANTIBIOTICO");
+                            System.out.println("2 - SUPLEMENTO");
+                            System.out.println("3 - USO_CONTINUO");
+                            System.out.print("Opção: ");
+                            int opCategoria = Integer.parseInt(sc.nextLine());
+
+                            switch (opCategoria) {
+                                case 1 ->
+                                    categoria = Categoria.ANTIBIOTICO;
+                                case 2 ->
+                                    categoria = Categoria.SUPLEMENTO;
+                                case 3 ->
+                                    categoria = Categoria.USO_CONTINUO;
+                                default ->
+                                    System.out.println("Opcao invalida. Digite 1, 2 ou 3.");
+                            }
+                        }
+
+                        System.out.print("Prioridade da tarefa (1 a 3): ");
+                        int prioridade = Integer.parseInt(sc.nextLine());
+
+                        System.out.print("Tarefa concluida? (true/false): ");
+                        boolean concluida = Boolean.parseBoolean(sc.nextLine());
+
+                        Tarefa tarefa = new Tarefa(
+                                titulo,
+                                descricaoTarefa,
+                                dataHora,
+                                categoria,
+                                prioridade,
+                                concluida
+                        );
+
+                        System.out.print("Titulo da agenda: ");
+                        String tituloAgenda = sc.nextLine();
+
+                        System.out.print("Descricao da agenda: ");
+                        String descricaoAgenda = sc.nextLine();
+
+                        System.out.print("Agenda concluida? (true/false): ");
+                        boolean agendaConcluida = Boolean.parseBoolean(sc.nextLine());
+
+                        agendaAtual = new Agenda(
+                                dataHora,
+                                tituloAgenda,
+                                descricaoAgenda,
+                                tarefa,
+                                agendaConcluida
+                        );
+
+                        System.out.println("\nAgenda criada com sucesso!");
+                        System.out.println(agendaAtual);
+                    }
+
+                    case 5 -> {
+                        System.out.println("\n=== AGENDA ATUAL ===");
+                        if (agendaAtual != null) {
+                            System.out.println(agendaAtual);
+                        } else {
+                            System.out.println("Nenhuma agenda foi criada ainda.");
+                        }
+                    }
+
+                    case 0 ->
+                        System.out.println("Encerrando o programa...");
+
+                    default ->
+                        System.out.println("Opcao invalida.");
+                }
+
+            } while (opcao != 0);
+
+            sc.close();
+        } catch (NumberFormatException e) {
+            System.out.println("Erro: valor numerico invalido.");
+        } catch (DateTimeException e) {
+            System.out.println("Erro: data ou hora invalida.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erro: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Erro inesperado: " + e.getMessage());
+        }
 
         //Mudar agenda para focar em remedio
-        //Adicionar menu (cuidar com os try catch)
         //Criar lista de remedio no cadastro
     }
 }
