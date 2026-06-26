@@ -14,10 +14,10 @@ public class Pessoa {
 
     private String nome;
     private int idade;
-    private Double altura;
-    private Double peso;
+    private double altura;
+    private double peso;
 
-    public Pessoa(String nome, int idade, Double altura, Double peso) {
+    public Pessoa(String nome, int idade, double altura, double peso) {
         this.nome = nome;
         this.idade = idade;
         this.altura = altura;
@@ -32,11 +32,11 @@ public class Pessoa {
         return idade;
     }
 
-    public Double getAltura() {
+    public double getAltura() {
         return altura;
     }
 
-    public Double getPeso() {
+    public double getPeso() {
         return peso;
     }
 
@@ -48,54 +48,22 @@ public class Pessoa {
         this.idade = idade;
     }
 
-    public void setPeso(Double peso) {
+    public void setPeso(double peso) {
         this.peso = peso;
     }
 
-    public void setAltura(Double altura) {
+    public void setAltura(double altura) {
         this.altura = altura;
     }
 
-    public Double calcularIMC() {
+    public double calcularIMC() {
         if (altura == 0) {
             throw new ArithmeticException("Altura não pode ser zero");
         }
         return peso / (altura * altura);
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 59 * hash + Objects.hashCode(this.nome);
-        hash = 59 * hash + this.idade;
-        hash = 59 * hash + Objects.hashCode(this.altura);
-        hash = 59 * hash + Objects.hashCode(this.peso);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Pessoa other = (Pessoa) obj;
-        if (this.idade != other.idade) {
-            return false;
-        }
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
-        if (!Objects.equals(this.altura, other.altura)) {
-            return false;
-        }
-        return Objects.equals(this.peso, other.peso);
-    }
+    
 
     @Override
     public String toString() {

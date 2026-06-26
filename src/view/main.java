@@ -27,7 +27,6 @@ public class main {
         
         System.out.println(a1);
         
-        //Mudar Doubles
         //Mudar agenda para focar em remedio
         //Mudar enum categoria para Antibiotico, Suplemento, Uso Continuo
         //Adicionar menu (cuidar com os try catch)

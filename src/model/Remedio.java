@@ -19,10 +19,10 @@ public class Remedio {
     private int qtdPilulasAtual;
     private LocalDate dataInicioMedicacao;
     private LocalDate dataFinalMedicacao;
-    private Double preco;
+    private double preco;
     private int pilulasPorDia;
 
-    public Remedio(String nome, String descricao, int qtdPilulas, LocalDate dataInicioMedicacao, Double preco, int pilulasPorDia) {
+    public Remedio(String nome, String descricao, int qtdPilulas, LocalDate dataInicioMedicacao, double preco, int pilulasPorDia) {
         this.nome = nome;
         this.descricao = descricao;
         this.qtdPilulasAtual = qtdPilulas;
@@ -104,11 +104,11 @@ public class Remedio {
         return "Estoque normal";
     }
 
-    public Double getPreco() {
+    public double getPreco() {
         return preco;
     }
 
-    public void setPreco(Double preco) {
+    public void setPreco(double preco) {
         this.preco = preco;
     }
 
@@ -120,47 +120,7 @@ public class Remedio {
         this.pilulasPorDia = pilulasPorDia;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.nome);
-        hash = 23 * hash + Objects.hashCode(this.descricao);
-        hash = 23 * hash + Objects.hashCode(this.dataInicioMedicacao);
-        hash = 23 * hash + Objects.hashCode(this.dataFinalMedicacao);
-        hash = 23 * hash + Objects.hashCode(this.preco);
-        hash = 23 * hash + this.pilulasPorDia;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Remedio other = (Remedio) obj;
-        if (this.pilulasPorDia != other.pilulasPorDia) {
-            return false;
-        }
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
-        if (!Objects.equals(this.descricao, other.descricao)) {
-            return false;
-        }
-        if (!Objects.equals(this.dataInicioMedicacao, other.dataInicioMedicacao)) {
-            return false;
-        }
-        if (!Objects.equals(this.dataFinalMedicacao, other.dataFinalMedicacao)) {
-            return false;
-        }
-        return Objects.equals(this.preco, other.preco);
-    }
+    
 
     @Override
     public String toString() {
