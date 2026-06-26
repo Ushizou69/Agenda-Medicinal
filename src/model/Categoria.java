@@ -8,9 +8,9 @@ package model;
  * @author 2025001861
  */
 public enum Categoria {
-    PESSOAL ("pessoal"), 
-    TRABALHO ("trabalho"),
-    FAMILIA ("familia");
+    ANTIBIOTICO ("Antibiotico"), 
+    SUPLEMENTO ("Suplemento"),
+    USO_CONTINUO ("Uso Continuo");
     
     String uso;
     
