@@ -7,6 +7,7 @@ package view;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Scanner;
 import model.*;
 
@@ -105,10 +106,19 @@ public class main {
                         );
 
                         Cadastro cadastro = new Cadastro(pessoa, usuario, remedio);
-                        dao.add(cadastro);
 
-                        System.out.println("\nCadastro realizado com sucesso!");
-                        System.out.println(cadastro);
+                        // Perguntar se quer adicionar mais remédios
+                        String continuar;
+                        do {
+                            System.out.print("Adicionar outro remedio? (s/n): ");
+                            continuar = sc.nextLine();
+                            if (continuar.equalsIgnoreCase("s")) {
+                                // coletar dados do novo remédio
+                                Remedio novoRemedio = new Remedio(nomeRemedio,descricao,qtdPilulas,dataInicio,preco,pilulasPorDia);
+                                cadastro.adicionarRemedio(novoRemedio);
+                            }
+                        } while (continuar.equalsIgnoreCase("s"));
+                        dao.add(cadastro);
                     }
 
                     case 2 -> {
@@ -167,6 +177,27 @@ public class main {
                         int minuto = Integer.parseInt(sc.nextLine());
 
                         LocalDateTime dataHora = LocalDateTime.of(ano, mes, dia, hora, minuto);
+                        
+                        // Buscar cadastro para pegar o remédio
+                        System.out.print("Nome do usuario para vincular o remedio: ");
+                        String nomeVinculo = sc.nextLine();
+                        Cadastro cadastroVinculado = dao.acharPorUsuario(new Usuario(nomeVinculo, "@", "000000"));
+
+                        Remedio remedioAgenda = null;
+                        if (cadastroVinculado != null && !cadastroVinculado.getRemedios().isEmpty()) {
+                            System.out.println("Remedios disponiveis:");
+                            List<Remedio> lista = cadastroVinculado.getRemedios();
+                            for (int i = 0; i < lista.size(); i++) {
+                                System.out.println((i + 1) + " - " + lista.get(i).getNome());
+                            }
+                            System.out.print("Escolha o numero do remedio: ");
+                            int escolha = Integer.parseInt(sc.nextLine()) - 1;
+                            if (escolha >= 0 && escolha < lista.size()) {
+                                remedioAgenda = lista.get(escolha);
+                            }
+                        } else {
+                            System.out.println("Nenhum cadastro/remedio encontrado. Agenda sem remedio vinculado.");
+                        }
 
                         Categoria categoria = null;
 
@@ -215,11 +246,12 @@ public class main {
                         boolean agendaConcluida = Boolean.parseBoolean(sc.nextLine());
 
                         agendaAtual = new Agenda(
-                                dataHora,
-                                tituloAgenda,
-                                descricaoAgenda,
-                                tarefa,
-                                agendaConcluida
+                            dataHora, 
+                            tituloAgenda, 
+                            descricaoAgenda,
+                            remedioAgenda, 
+                            tarefa, 
+                            agendaConcluida
                         );
 
                         System.out.println("\nAgenda criada com sucesso!");

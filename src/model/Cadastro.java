@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -14,12 +15,12 @@ public class Cadastro {
 
     private Pessoa pessoa;
     private Usuario usuario;
-    private Remedio remedio;
+    private List<Remedio> remedios;
 
     public Cadastro(Pessoa pessoa, Usuario usuario, Remedio remedio) {
         this.pessoa = pessoa;
         this.usuario = usuario;
-        this.remedio = remedio;
+        this.remedios.add(remedio);
     }
 
     public Pessoa getPessoa() {
@@ -31,12 +32,26 @@ public class Cadastro {
     }
 
 
-    public Remedio getRemedio() {
-        return remedio;
+    public List<Remedio> getRemedios() {
+        return remedios;
+    }
+
+    public void adicionarRemedio(Remedio remedio) {
+        if (remedio != null) {
+            remedios.add(remedio);
+        }
+    }
+    
+    public boolean removerRemedio(Remedio remedio) {
+        return remedios.remove(remedio);
     }
 
     public void setRemedio(Remedio remedio) {
-        this.remedio = remedio;
+        if (remedios.isEmpty()) {
+            remedios.add(remedio);
+        } else {
+            remedios.set(0, remedio);
+        }
     }
 
     @Override
@@ -44,7 +59,7 @@ public class Cadastro {
         int hash = 7;
         hash = 89 * hash + Objects.hashCode(this.pessoa);
         hash = 89 * hash + Objects.hashCode(this.usuario);
-        hash = 89 * hash + Objects.hashCode(this.remedio);
+        hash = 89 * hash + Objects.hashCode(this.remedios);
         return hash;
     }
 
@@ -67,11 +82,16 @@ public class Cadastro {
         if (!Objects.equals(this.usuario, other.usuario)) {
             return false;
         }
-        return Objects.equals(this.remedio, other.remedio);
+        return Objects.equals(this.remedios, other.remedios);
     }
 
     @Override
     public String toString() {
+        StringBuilder sbRemedios = new StringBuilder();
+        for (Remedio r : remedios) {
+            sbRemedios.append(r.toString()).append("\n");
+        }
+
         return """
            ========================================
                      DADOS DO CADASTRO
@@ -81,12 +101,14 @@ public class Cadastro {
            
            %s
            
+           Remedios cadastrados (%d):
            %s
            ========================================
            """.formatted(
                 pessoa,
                 usuario,
-                remedio
+                remedios.size(),
+                sbRemedios.toString()
         );
     }
 

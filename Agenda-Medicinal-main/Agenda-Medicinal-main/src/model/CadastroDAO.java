@@ -4,7 +4,7 @@
  */
 package model;
 
-import java.util.HashSet;
+import java.util.TreeSet;
 
 /**
  *
@@ -12,7 +12,7 @@ import java.util.HashSet;
  */
 public class CadastroDAO implements OperacoesDAO<Cadastro> {
 
-    private HashSet<Cadastro> lista = new HashSet<Cadastro>();
+    private TreeSet<Cadastro> lista = new TreeSet<Cadastro>();
 
     @Override
     public boolean add(Cadastro c) {
@@ -46,15 +46,15 @@ public class CadastroDAO implements OperacoesDAO<Cadastro> {
         return null;
     }
 
-    public HashSet getDados() {
+    public TreeSet getDados() {
         return lista;
     }
 
-    public Cadastro acharPorUsuario(Usuario usuario) {
+    public Cadastro acharPorNome(String nome) {
 
         for (Cadastro cadastro : lista) {
 
-            if (usuario.getNome().equals(cadastro.getUsuario().getNome())) {
+            if (nome.equals(Cadastro.getNome())) {
                 return cadastro;
             }
         }
@@ -66,13 +66,11 @@ public class CadastroDAO implements OperacoesDAO<Cadastro> {
 
         for (Cadastro cadastro : lista) {
 
-            for (Remedio remedio : cadastro.getRemedios()) {  // itera a lista
-
-                if (remedio.getQtdPilulasAtual() == qtdPilulas) {
-                    return cadastro;
-                }
+            if (qtdPilulas == Remedio.getQtdPilulas()) {
+                return cadastro;
             }
         }
+
         return null;
     }
 }

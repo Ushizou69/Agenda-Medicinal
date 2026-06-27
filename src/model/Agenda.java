@@ -16,15 +16,23 @@ public class Agenda {
     private LocalDateTime data;
     private String nome;
     private String descricao;
+    private Remedio remedio;
     private Tarefa tarefa;
     private boolean concluida;
 
-    public Agenda(LocalDateTime data, String nome, String descricao, Tarefa tarefa, boolean concluida) {
+    // Construtor focado em remédio
+    public Agenda(LocalDateTime data, String nome, String descricao, Remedio remedio, boolean concluida) {
         this.data = data;
         this.nome = nome;
         this.descricao = descricao;
-        this.tarefa = tarefa;
+        this.remedio = remedio;
         this.concluida = concluida;
+    }
+
+    // Construtor completo: remédio + tarefa juntos
+    public Agenda(LocalDateTime data, String nome, String descricao, Remedio remedio, Tarefa tarefa, boolean concluida) {
+        this(data, nome, descricao, remedio, concluida);
+        this.tarefa = tarefa;
     }
 
     public LocalDateTime getData() {
@@ -65,6 +73,20 @@ public class Agenda {
 
     public void setConcluida(boolean concluida) {
         this.concluida = concluida;
+    }
+    
+    public Remedio getRemedio() {
+        return remedio;
+    }
+    
+    public void setRemedio(Remedio remedio) {
+        this.remedio = remedio; 
+    }
+
+    // Verifica se está dentro do prazo do remédio vinculado
+    public String getStatusRemedio() {
+        if (remedio == null) return "Nenhum remédio vinculado";
+        return remedio.getStatusMedicacao();
     }
 
     @Override
@@ -115,6 +137,7 @@ public class Agenda {
            Data e Hora       : %s
            Descricao         : %s
            Status            : %s
+           Remedio Vinculado : %s
            Tarefa Vinculada  : %s
            ========================================
            """.formatted(
@@ -122,7 +145,8 @@ public class Agenda {
                 data,
                 descricao,
                 concluida ? "Concluído" : "Pendente",
-                tarefa != null ? tarefa.toString() : "Nenhuma"
+                remedio != null ? remedio.getNome() + " — " + remedio.getStatusMedicacao(): "Nenhum",
+                tarefa != null ? tarefa.getNome() : "Nenhuma"
         );
 
     }
