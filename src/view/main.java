@@ -286,8 +286,5 @@ public class main {
         } catch (Exception e) {
             System.out.println("Erro inesperado: " + e.getMessage());
         }
-
-        //Mudar agenda para focar em remedio
-        //Criar lista de remedio no cadastro
     }
 }
