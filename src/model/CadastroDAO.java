@@ -46,31 +46,15 @@ public class CadastroDAO implements OperacoesDAO<Cadastro> {
         return null;
     }
 
-    public HashSet getDados() {
-        return lista;
+    public HashSet<Cadastro> getDados() {
+    return lista;
     }
 
-    public Cadastro acharPorUsuario(Usuario usuario) {
-
+    // achar o usuario por nome string
+    public Cadastro acharPorUsuario(String nomeUsuario) {
         for (Cadastro cadastro : lista) {
-
-            if (usuario.getNome().equals(cadastro.getUsuario().getNome())) {
+            if (nomeUsuario.equals(cadastro.getUsuario().getNome())) {
                 return cadastro;
-            }
-        }
-
-        return null;
-    }
-
-    public Cadastro acharPorQtdPilulas(int qtdPilulas) {
-
-        for (Cadastro cadastro : lista) {
-
-            for (Remedio remedio : cadastro.getRemedios()) {  // itera a lista
-
-                if (remedio.getQtdPilulasAtual() == qtdPilulas) {
-                    return cadastro;
-                }
             }
         }
         return null;

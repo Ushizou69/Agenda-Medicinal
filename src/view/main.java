@@ -113,9 +113,44 @@ public class main {
                             System.out.print("Adicionar outro remedio? (s/n): ");
                             continuar = sc.nextLine();
                             if (continuar.equalsIgnoreCase("s")) {
-                                // coletar dados do novo remédio
-                                Remedio novoRemedio = new Remedio(nomeRemedio,descricao,qtdPilulas,dataInicio,preco,pilulasPorDia);
+
+                                System.out.print("Nome do remedio: ");
+                                String nomeNovoRemedio = sc.nextLine();
+
+                                System.out.print("Descricao do remedio: ");
+                                String descricaoNovoRemedio = sc.nextLine();
+
+                                System.out.print("Quantidade de pilulas: ");
+                                int qtdNovas = Integer.parseInt(sc.nextLine());
+
+                                System.out.print("Data de inicio da medicacao - ano: ");
+                                int anoNovo = Integer.parseInt(sc.nextLine());
+
+                                System.out.print("Mes: ");
+                                int mesNovo = Integer.parseInt(sc.nextLine());
+
+                                System.out.print("Dia: ");
+                                int diaNovo = Integer.parseInt(sc.nextLine());
+
+                                LocalDate dataNovaInicio = LocalDate.of(anoNovo, mesNovo, diaNovo);
+
+                                System.out.print("Preco do remedio: ");
+                                double precoNovo = Double.parseDouble(sc.nextLine());
+
+                                System.out.print("Pilulas por dia: ");
+                                int pilulasPorDiaNovo = Integer.parseInt(sc.nextLine());
+
+                                Remedio novoRemedio = new Remedio(
+                                        nomeNovoRemedio,
+                                        descricaoNovoRemedio,
+                                        qtdNovas,
+                                        dataNovaInicio,
+                                        precoNovo,
+                                        pilulasPorDiaNovo
+                                );
+
                                 cadastro.adicionarRemedio(novoRemedio);
+                                System.out.println("Remedio adicionado com sucesso!");
                             }
                         } while (continuar.equalsIgnoreCase("s"));
                         dao.add(cadastro);
@@ -123,7 +158,13 @@ public class main {
 
                     case 2 -> {
                         System.out.println("\n=== LISTA DE CADASTROS ===");
-                        dao.getDados();
+                        if (dao.getDados().isEmpty()) {
+                            System.out.println("Nenhum cadastro encontrado.");
+                        } else {
+                            for (Cadastro c : dao.getDados()) {
+                                System.out.println(c);
+                            }
+                        }
                     }
 
                     case 3 -> {
@@ -132,15 +173,7 @@ public class main {
                         System.out.print("Nome do usuario: ");
                         String nomeUsuario = sc.nextLine();
 
-                        System.out.print("Email do usuario: ");
-                        String email = sc.nextLine();
-
-                        System.out.print("Senha do usuario: ");
-                        String senha = sc.nextLine();
-
-                        Usuario usuarioBusca = new Usuario(nomeUsuario, email, senha);
-
-                        Cadastro resultado = dao.acharPorUsuario(usuarioBusca);
+                        Cadastro resultado = dao.acharPorUsuario(nomeUsuario);
 
                         if (resultado != null) {
                             System.out.println("Cadastro encontrado:");
@@ -181,7 +214,7 @@ public class main {
                         // Buscar cadastro para pegar o remédio
                         System.out.print("Nome do usuario para vincular o remedio: ");
                         String nomeVinculo = sc.nextLine();
-                        Cadastro cadastroVinculado = dao.acharPorUsuario(new Usuario(nomeVinculo, "@", "000000"));
+                        Cadastro cadastroVinculado = dao.acharPorUsuario(nomeVinculo);
 
                         Remedio remedioAgenda = null;
                         if (cadastroVinculado != null && !cadastroVinculado.getRemedios().isEmpty()) {

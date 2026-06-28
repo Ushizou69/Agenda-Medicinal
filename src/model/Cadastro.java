@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,6 +21,7 @@ public class Cadastro {
     public Cadastro(Pessoa pessoa, Usuario usuario, Remedio remedio) {
         this.pessoa = pessoa;
         this.usuario = usuario;
+        this.remedios = new ArrayList<>();
         this.remedios.add(remedio);
     }
 
@@ -31,17 +33,18 @@ public class Cadastro {
         return usuario;
     }
 
-
     public List<Remedio> getRemedios() {
         return remedios;
     }
 
+    //adicionar remedio ao array
     public void adicionarRemedio(Remedio remedio) {
         if (remedio != null) {
             remedios.add(remedio);
         }
     }
     
+    //remover remedio ao array
     public boolean removerRemedio(Remedio remedio) {
         return remedios.remove(remedio);
     }
