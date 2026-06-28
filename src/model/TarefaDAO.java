@@ -52,7 +52,8 @@ public class TarefaDAO implements OperacoesDAO<Tarefa> {
     public Collection getDados() {
         return lista;
     }
-
+    
+    // Recebe um nome e retorna uma tarefa com o mesmo.
     public Tarefa acharPorNome(String nome) {
 
         for (Tarefa tarefa : lista) {
@@ -64,7 +65,8 @@ public class TarefaDAO implements OperacoesDAO<Tarefa> {
 
         return null;
     }
-
+    
+    // Recebe um integer prioridade e retrona uma tarefa com esta prioridade.
     public Tarefa acharPorPrioridade(int prioridade) {
 
         for (Tarefa tarefa : lista) {
@@ -75,7 +77,8 @@ public class TarefaDAO implements OperacoesDAO<Tarefa> {
         }
         return null;
     }
-
+    
+    // Recebe uma data e retorna uma tarefa baseado nessa data.
     public Tarefa acharPorDatalimite(LocalDateTime data) {
 
         for (Tarefa tarefa : lista) {

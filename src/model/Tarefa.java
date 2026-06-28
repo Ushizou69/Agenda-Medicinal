@@ -78,7 +78,8 @@ public class Tarefa implements Comparable<Tarefa> {
     public void setConcluida(boolean concluida) {
         this.concluida = concluida;
     }
-
+    
+    // Calcula a data limite, comparando com dia de atual e retornando uma aviso. 
     public void dataLimite() {
         LocalDateTime hoje = LocalDateTime.now();
 
@@ -88,7 +89,8 @@ public class Tarefa implements Comparable<Tarefa> {
             System.out.println("Voce ainda este no prazo.");
         }
     }
-
+    
+    // Usa um compareTo baseado na prioridade.
     @Override
     public int compareTo(Tarefa outra) {
         return Integer.compare(outra.prioridade, this.prioridade);

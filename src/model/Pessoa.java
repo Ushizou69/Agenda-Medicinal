@@ -55,7 +55,7 @@ public class Pessoa {
     public void setAltura(double altura) {
         this.altura = altura;
     }
-
+    
     public double calcularIMC() {
         if (altura == 0) {
             throw new ArithmeticException("Altura não pode ser zero");

@@ -31,11 +31,13 @@ public class Remedio {
         this.pilulasPorDia = pilulasPorDia;
         calcularDataFinalMedicacao();
     }
-
+    
+    // Calcula quantos dias restam de remédio baseado na qtd de Pilulas dividido por pilulas consumidas diariamente.
     public int calcularDiasRestantes(int pilulasPorDia) {
         return this.qtdPilulasAtual / pilulasPorDia;
     }
-
+    
+    // Serve para tomar uma dose do remédio.
     public void tomarDose() {
         if (qtdPilulasAtual > 0) {
             qtdPilulasAtual -= pilulasPorDia;
@@ -77,7 +79,8 @@ public class Remedio {
     public LocalDate getDataFinalMedicacao() {
         return dataFinalMedicacao;
     }
-
+    
+    // Calcula quando ira acabar o remedio.
     public void calcularDataFinalMedicacao() {
         this.dataFinalMedicacao = dataInicioMedicacao.plusDays(calcularDiasRestantes(pilulasPorDia));
     }
@@ -91,7 +94,8 @@ public class Remedio {
 
         return "Dentro do prazo";
     }
-
+    
+    // Retorna o status da medicacao, se houver 5 ou menor avisa, avisa quando acabar, e se tiver uma boa quantidade retorna normal.
     public String getStatusMedicacao() {
         if (qtdPilulasAtual <= 0) {
             return "Medicao acabou!";
