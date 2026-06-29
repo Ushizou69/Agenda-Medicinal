@@ -105,7 +105,8 @@ public class Pessoa {
             Idade: %d anos
             Altura: %.2f m
             Peso: %.2f kg
-           """.formatted(nome, idade, altura, peso);
+            IMC: %.2f 
+           """.formatted(nome, idade, altura, peso, calcularIMC());
     }
 
 }

@@ -33,6 +33,7 @@ public class main {
                 System.out.println("3 - Buscar cadastro por usuario");
                 System.out.println("4 - Criar tarefa e agenda");
                 System.out.println("5 - Mostrar agenda atual");
+                System.out.println("6 - Adicionar ou remover remedios");
                 System.out.println("0 - Sair");
                 System.out.print("Escolha uma opcaoo: ");
                 opcao = Integer.parseInt(sc.nextLine());
@@ -297,6 +298,89 @@ public class main {
                             System.out.println(agendaAtual);
                         } else {
                             System.out.println("Nenhuma agenda foi criada ainda.");
+                        }
+                    }
+                    
+                    case 6 -> {
+                        System.out.println("\n=== ADICIONAR OU REMOVER REMEDIOS ===");
+
+                        System.out.print("Nome do usuario: ");
+                        String nomeUsuario6 = sc.nextLine();
+
+                        Cadastro cadastro6 = dao.acharPorUsuario(nomeUsuario6);
+
+                        if (cadastro6 == null) {
+                            System.out.println("Usuario nao encontrado.");
+                            break;
+                        }
+
+                        System.out.println("Cadastro encontrado: " + cadastro6.getUsuario().getNome());
+                        System.out.println("1 - Adicionar remedio");
+                        System.out.println("2 - Remover remedio");
+                        System.out.print("Opcao: ");
+                        int opcao6 = Integer.parseInt(sc.nextLine());
+
+                        switch (opcao6) {
+
+                            case 1 -> {
+                                System.out.print("Nome do remedio: ");
+                                String nomeR = sc.nextLine();
+
+                                System.out.print("Descricao: ");
+                                String descR = sc.nextLine();
+
+                                System.out.print("Quantidade de pilulas: ");
+                                int qtdR = Integer.parseInt(sc.nextLine());
+
+                                System.out.print("Ano de inicio: ");
+                                int anoR = Integer.parseInt(sc.nextLine());
+
+                                System.out.print("Mes: ");
+                                int mesR = Integer.parseInt(sc.nextLine());
+
+                                System.out.print("Dia: ");
+                                int diaR = Integer.parseInt(sc.nextLine());
+
+                                LocalDate dataR = LocalDate.of(anoR, mesR, diaR);
+
+                                System.out.print("Preco: ");
+                                double precoR = Double.parseDouble(sc.nextLine());
+
+                                System.out.print("Pilulas por dia: ");
+                                int ppd = Integer.parseInt(sc.nextLine());
+
+                                Remedio novoR = new Remedio(nomeR, descR, qtdR, dataR, precoR, ppd);
+                                cadastro6.adicionarRemedio(novoR);
+                                System.out.println("Remedio adicionado com sucesso!");
+                            }
+
+                            case 2 -> {
+                                List<Remedio> remedios6 = cadastro6.getRemedios();
+
+                                if (remedios6.isEmpty()) {
+                                    System.out.println("Nenhum remedio cadastrado para este usuario.");
+                                    break;
+                                }
+
+                                System.out.println("Remedios disponiveis:");
+                                for (int i = 0; i < remedios6.size(); i++) {
+                                    System.out.println((i + 1) + " - " + remedios6.get(i).getNome());
+                                }
+
+                                System.out.print("Escolha o numero do remedio para remover: ");
+                                int escolhaR = Integer.parseInt(sc.nextLine()) - 1;
+
+                                if (escolhaR >= 0 && escolhaR < remedios6.size()) {
+                                    Remedio removido = remedios6.get(escolhaR);
+                                    cadastro6.removerRemedio(removido);
+                                    System.out.println("Remedio '" + removido.getNome() + "' removido com sucesso!");
+                                } else {
+                                    System.out.println("Opcao invalida.");
+                                }
+                            }
+
+                            default ->
+                                System.out.println("Opcao invalida.");
                         }
                     }
 
