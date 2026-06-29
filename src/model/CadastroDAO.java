@@ -50,7 +50,7 @@ public class CadastroDAO implements OperacoesDAO<Cadastro> {
     return lista;
     }
 
-    // achar o usuario por nome string
+    // Recebe um String nome de usuario para achar o usuario, retornando o cadastro do usuario.
     public Cadastro acharPorUsuario(String nomeUsuario) {
         for (Cadastro cadastro : lista) {
             if (nomeUsuario.equals(cadastro.getUsuario().getNome())) {

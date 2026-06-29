@@ -79,7 +79,7 @@ public class Tarefa implements Comparable<Tarefa> {
         this.concluida = concluida;
     }
     
-    // Calcula a data limite, comparando com dia de atual e retornando uma aviso. 
+    // Calcula a data limite, comparando com dia de atual e retornando um aviso. 
     public void dataLimite() {
         LocalDateTime hoje = LocalDateTime.now();
 

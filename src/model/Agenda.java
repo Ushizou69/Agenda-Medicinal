@@ -20,7 +20,7 @@ public class Agenda {
     private Tarefa tarefa;
     private boolean concluida;
 
-    // Construtor focado em remédio
+    // Construtor focado em remedio.
     public Agenda(LocalDateTime data, String nome, String descricao, Remedio remedio, boolean concluida) {
         this.data = data;
         this.nome = nome;
@@ -29,7 +29,7 @@ public class Agenda {
         this.concluida = concluida;
     }
 
-    // Construtor completo: remédio + tarefa juntos
+    // Construtor completo: remedio + tarefa juntos.
     public Agenda(LocalDateTime data, String nome, String descricao, Remedio remedio, Tarefa tarefa, boolean concluida) {
         this(data, nome, descricao, remedio, concluida);
         this.tarefa = tarefa;
@@ -83,7 +83,7 @@ public class Agenda {
         this.remedio = remedio; 
     }
 
-    // Verifica se está dentro do prazo do remédio vinculado
+    // Verifica se esta dentro do prazo do remedio vinculado.
     public String getStatusRemedio() {
         if (remedio == null) return "Nenhum remédio vinculado";
         return remedio.getStatusMedicacao();
@@ -145,7 +145,7 @@ public class Agenda {
                 data,
                 descricao,
                 concluida ? "Concluído" : "Pendente",
-                remedio != null ? remedio.getNome() + " — " + remedio.getStatusMedicacao(): "Nenhum",
+                remedio != null ? remedio.getNome() + " - " + remedio.getStatusMedicacao(): "Nenhum",
                 tarefa != null ? tarefa.getNome() : "Nenhuma"
         );
 

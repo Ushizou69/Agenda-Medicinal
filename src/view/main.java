@@ -35,7 +35,7 @@ public class main {
                 System.out.println("5 - Mostrar agenda atual");
                 System.out.println("6 - Adicionar ou remover remedios");
                 System.out.println("0 - Sair");
-                System.out.print("Escolha uma opcaoo: ");
+                System.out.print("Escolha uma opcao: ");
                 opcao = Integer.parseInt(sc.nextLine());
 
                 switch (opcao) {
@@ -50,7 +50,7 @@ public class main {
                         System.out.print("Email do usuario: ");
                         String email = sc.nextLine();
 
-                        System.out.print("Senha do usuario: ");
+                        System.out.print("Senha do usuario (minimo 6 caracteres): ");
                         String senha = sc.nextLine();
 
                         Usuario usuario = new Usuario(nomeUsuario, email, senha);
@@ -108,7 +108,7 @@ public class main {
 
                         Cadastro cadastro = new Cadastro(pessoa, usuario, remedio);
 
-                        // Perguntar se quer adicionar mais remédios
+                        // Perguntar se quer adicionar mais remedios
                         String continuar;
                         do {
                             System.out.print("Adicionar outro remedio? (s/n): ");
@@ -211,8 +211,8 @@ public class main {
                         int minuto = Integer.parseInt(sc.nextLine());
 
                         LocalDateTime dataHora = LocalDateTime.of(ano, mes, dia, hora, minuto);
-                        
-                        // Buscar cadastro para pegar o remédio
+
+                        // Buscar cadastro para pegar o remedio
                         System.out.print("Nome do usuario para vincular o remedio: ");
                         String nomeVinculo = sc.nextLine();
                         Cadastro cadastroVinculado = dao.acharPorUsuario(nomeVinculo);
@@ -231,6 +231,7 @@ public class main {
                             }
                         } else {
                             System.out.println("Nenhum cadastro/remedio encontrado. Agenda sem remedio vinculado.");
+                            break;
                         }
 
                         Categoria categoria = null;
@@ -240,7 +241,7 @@ public class main {
                             System.out.println("1 - ANTIBIOTICO");
                             System.out.println("2 - SUPLEMENTO");
                             System.out.println("3 - USO_CONTINUO");
-                            System.out.print("Opção: ");
+                            System.out.print("Opcao: ");
                             int opCategoria = Integer.parseInt(sc.nextLine());
 
                             switch (opCategoria) {
@@ -255,11 +256,34 @@ public class main {
                             }
                         }
 
-                        System.out.print("Prioridade da tarefa (1 a 3): ");
-                        int prioridade = Integer.parseInt(sc.nextLine());
+                        int prioridade;
 
-                        System.out.print("Tarefa concluida? (true/false): ");
-                        boolean concluida = Boolean.parseBoolean(sc.nextLine());
+                        do {
+                            System.out.print("Prioridade da tarefa (1 a 3): ");
+                            prioridade = Integer.parseInt(sc.nextLine());
+
+                            if (prioridade < 1 || prioridade > 3) {
+                                System.out.println("Valor invalido! Digite apenas 1, 2 ou 3.");
+                            }
+
+                        } while (prioridade < 1 || prioridade > 3);
+
+                        boolean concluida;
+
+                        while (true) {
+                            System.out.print("Tarefa concluida? (s/n): ");
+                            String resposta = sc.nextLine().trim().toLowerCase();
+
+                            if (resposta.equals("s")) {
+                                concluida = true;
+                                break;
+                            } else if (resposta.equals("n")) {
+                                concluida = false;
+                                break;
+                            } else {
+                                System.out.println("Opcao invalida. Digite apenas 's' ou 'n'.");
+                            }
+                        }
 
                         Tarefa tarefa = new Tarefa(
                                 titulo,
@@ -276,16 +300,30 @@ public class main {
                         System.out.print("Descricao da agenda: ");
                         String descricaoAgenda = sc.nextLine();
 
-                        System.out.print("Agenda concluida? (true/false): ");
-                        boolean agendaConcluida = Boolean.parseBoolean(sc.nextLine());
+                        boolean agendaConcluida;
+
+                        while (true) {
+                            System.out.print("Agenda concluida? (s/n): ");
+                            String resposta = sc.nextLine().trim().toLowerCase();
+
+                            if (resposta.equals("s")) {
+                                agendaConcluida = true;
+                                break;
+                            } else if (resposta.equals("n")) {
+                                agendaConcluida = false;
+                                break;
+                            } else {
+                                System.out.println("Opcao invalida. Digite apenas 's' ou 'n'.");
+                            }
+                        }
 
                         agendaAtual = new Agenda(
-                            dataHora, 
-                            tituloAgenda, 
-                            descricaoAgenda,
-                            remedioAgenda, 
-                            tarefa, 
-                            agendaConcluida
+                                dataHora,
+                                tituloAgenda,
+                                descricaoAgenda,
+                                remedioAgenda,
+                                tarefa,
+                                agendaConcluida
                         );
 
                         System.out.println("\nAgenda criada com sucesso!");
@@ -300,7 +338,7 @@ public class main {
                             System.out.println("Nenhuma agenda foi criada ainda.");
                         }
                     }
-                    
+
                     case 6 -> {
                         System.out.println("\n=== ADICIONAR OU REMOVER REMEDIOS ===");
 

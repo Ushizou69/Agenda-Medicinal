@@ -37,14 +37,14 @@ public class Cadastro {
         return remedios;
     }
 
-    //adicionar remedio ao array
+    // Adicionar remedio ao array
     public void adicionarRemedio(Remedio remedio) {
         if (remedio != null) {
             remedios.add(remedio);
         }
     }
     
-    //remover remedio ao array
+    // Remover remedio ao array
     public boolean removerRemedio(Remedio remedio) {
         return remedios.remove(remedio);
     }

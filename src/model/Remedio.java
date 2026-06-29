@@ -32,7 +32,7 @@ public class Remedio {
         calcularDataFinalMedicacao();
     }
     
-    // Calcula quantos dias restam de remédio baseado na qtd de Pilulas dividido por pilulas consumidas diariamente.
+    // Calcula quantos dias restam de remédio baseado na qtd de Pilulas dividido por pilulas consumidas diariamente, retornando um integer de dias restantes da medicacao.
     public int calcularDiasRestantes(int pilulasPorDia) {
         return this.qtdPilulasAtual / pilulasPorDia;
     }
@@ -95,7 +95,7 @@ public class Remedio {
         return "Dentro do prazo";
     }
     
-    // Retorna o status da medicacao, se houver 5 ou menor avisa, avisa quando acabar, e se tiver uma boa quantidade retorna normal.
+    // Retorna o status da medicacao sendo String, se houver 5 ou menor avisa, avisa quando acabar, e se tiver uma boa quantidade retorna normal.
     public String getStatusMedicacao() {
         if (qtdPilulasAtual <= 0) {
             return "Medicao acabou!";

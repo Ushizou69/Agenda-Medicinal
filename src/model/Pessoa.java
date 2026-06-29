@@ -56,6 +56,7 @@ public class Pessoa {
         this.altura = altura;
     }
     
+    // Usa a altura e peso do usuario para calcular e retornar o IMC da pessoa, sendo double.
     public double calcularIMC() {
         if (altura == 0) {
             throw new ArithmeticException("Altura não pode ser zero");

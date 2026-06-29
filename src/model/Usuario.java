@@ -54,11 +54,13 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
+    
+    // Retorna booleano e checa se o email inserido contém @ e .
     public boolean validarEmail() {
         return this.email != null && email.contains("@") && email.contains(".");
     }
-
+    
+    // Checa se a semha inserida contém no mínimo 6 caracteres.
     public boolean validarSenha() {
         return senha != null && senha.length() >= 6;
     }

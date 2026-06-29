@@ -66,7 +66,7 @@ public class TarefaDAO implements OperacoesDAO<Tarefa> {
         return null;
     }
     
-    // Recebe um integer prioridade e retrona uma tarefa com esta prioridade.
+    // Recebe um integer prioridade e retorna uma tarefa com esta prioridade.
     public Tarefa acharPorPrioridade(int prioridade) {
 
         for (Tarefa tarefa : lista) {
