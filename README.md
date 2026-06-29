@@ -6,9 +6,12 @@ Agenda médica que serve para facilitar o controle sobre seu tempo, podendo admi
 
 ## Funcionalidades
 
-- Calcula quando comprar novo remédio baseado na quantidade pílulas que o usuário tem, 
-- Agenda de coisas para fazer durante a semana/dia com notificação, 
-- Lista de compras;
+- Calcula quando comprar novo remédio baseado na quantidade pílulas que o usuário tem;
+- Cadastro de usuários com validação de e-mail e senha, vinculados a dados pessoais (nome, idade, altura, peso) e cálculo de IMC;
+- Gerenciamento de remédios com controle de quantidade de pílulas, cálculo automático da data final da medicação e alertas de estoque baixo ou esgotado;
+- Agenda de compromissos com data/hora, podendo vincular um remédio e/ou uma tarefa a cada item;
+- Cadastro de tarefas com descrição, categoria (Antibiótico, Suplemento, Uso Contínuo), prioridade (1 a 3) e prazo, com ordenação por prioridade;
+- Busca de cadastros por nome de usuário.
 
 ## Objetivo
 
