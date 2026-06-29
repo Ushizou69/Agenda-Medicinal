@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Agenda médica que serve para facilitar o controle sobre seu tempo, podendo administrar suas atividades físicas, também como suas dosagens medicinais e tendo as prioridades definidas em cada uma suas tarefas.  
+Agenda médica que facilita o controle de medicamentos e tarefas do dia a dia, permitindo administrar compromissos pessoais, dosagens medicinais e prioridades de cada tarefa cadastrada.  
 
 ## Funcionalidades
 
