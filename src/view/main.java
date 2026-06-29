@@ -17,6 +17,28 @@ import model.*;
  */
 public class main {
 
+    public static int lerInteiroNaoNegativo(Scanner sc, String mensagem) {
+        System.out.print(mensagem);
+        int valor = Integer.parseInt(sc.nextLine());
+
+        if (valor < 0) {
+            throw new IllegalArgumentException("Nao sao permitidos valores negativos.");
+        }
+
+        return valor;
+    }
+
+    public static double lerDoubleNaoNegativo(Scanner sc, String mensagem) {
+        System.out.print(mensagem);
+        double valor = Double.parseDouble(sc.nextLine());
+
+        if (valor < 0) {
+            throw new IllegalArgumentException("Nao sao permitidos valores negativos.");
+        }
+
+        return valor;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -61,12 +83,21 @@ public class main {
 
                         System.out.print("Idade: ");
                         int idade = Integer.parseInt(sc.nextLine());
+                        if (idade < 0) {
+                            throw new IllegalArgumentException("Idade nao pode ser negativa.");
+                        }
 
                         System.out.print("Altura (ex: 1.75): ");
                         double altura = Double.parseDouble(sc.nextLine());
+                        if (altura < 0) {
+                            throw new IllegalArgumentException("Altura nao pode ser negativa.");
+                        }
 
                         System.out.print("Peso (ex: 78.5): ");
                         double peso = Double.parseDouble(sc.nextLine());
+                        if (peso < 0) {
+                            throw new IllegalArgumentException("Peso nao pode ser negativo.");
+                        }
 
                         Pessoa pessoa = new Pessoa(nomePessoa, idade, altura, peso);
 
@@ -79,6 +110,9 @@ public class main {
 
                         System.out.print("Quantidade de pilulas: ");
                         int qtdPilulas = Integer.parseInt(sc.nextLine());
+                        if (qtdPilulas < 0) {
+                            throw new IllegalArgumentException("Quantidade de pilulas nao pode ser negativa.");
+                        }
 
                         System.out.print("Data de inicio da medicacao - ano: ");
                         int ano = Integer.parseInt(sc.nextLine());
@@ -93,9 +127,15 @@ public class main {
 
                         System.out.print("Preco do remedio: ");
                         double preco = Double.parseDouble(sc.nextLine());
+                        if (preco < 0) {
+                            throw new IllegalArgumentException("Preco nao pode ser negativo.");
+                        }
 
                         System.out.print("Pilulas por dia: ");
                         int pilulasPorDia = Integer.parseInt(sc.nextLine());
+                        if (pilulasPorDia < 0) {
+                            throw new IllegalArgumentException("Pilulas por dia nao pode ser negativo.");
+                        }
 
                         Remedio remedio = new Remedio(
                                 nomeRemedio,
@@ -123,6 +163,9 @@ public class main {
 
                                 System.out.print("Quantidade de pilulas: ");
                                 int qtdNovas = Integer.parseInt(sc.nextLine());
+                                if (qtdNovas < 0) {
+                                    throw new IllegalArgumentException("Quantidade de pilulas nao pode ser negativa.");
+                                }
 
                                 System.out.print("Data de inicio da medicacao - ano: ");
                                 int anoNovo = Integer.parseInt(sc.nextLine());
@@ -137,9 +180,15 @@ public class main {
 
                                 System.out.print("Preco do remedio: ");
                                 double precoNovo = Double.parseDouble(sc.nextLine());
+                                if (precoNovo < 0) {
+                                    throw new IllegalArgumentException("Preco nao pode ser negativo.");
+                                }
 
                                 System.out.print("Pilulas por dia: ");
                                 int pilulasPorDiaNovo = Integer.parseInt(sc.nextLine());
+                                if (pilulasPorDiaNovo < 0) {
+                                    throw new IllegalArgumentException("Pilulas por dia nao pode ser negativo.");
+                                }
 
                                 Remedio novoRemedio = new Remedio(
                                         nomeNovoRemedio,
@@ -369,6 +418,9 @@ public class main {
 
                                 System.out.print("Quantidade de pilulas: ");
                                 int qtdR = Integer.parseInt(sc.nextLine());
+                                if (qtdR < 0) {
+                                    throw new IllegalArgumentException("Quantidade de pilulas nao pode ser negativa.");
+                                }
 
                                 System.out.print("Ano de inicio: ");
                                 int anoR = Integer.parseInt(sc.nextLine());
@@ -383,9 +435,15 @@ public class main {
 
                                 System.out.print("Preco: ");
                                 double precoR = Double.parseDouble(sc.nextLine());
+                                if (precoR < 0) {
+                                    throw new IllegalArgumentException("Preco nao pode ser negativo.");
+                                }
 
                                 System.out.print("Pilulas por dia: ");
                                 int ppd = Integer.parseInt(sc.nextLine());
+                                if (ppd < 0) {
+                                    throw new IllegalArgumentException("Pilulas por dia nao pode ser negativo.");
+                                }
 
                                 Remedio novoR = new Remedio(nomeR, descR, qtdR, dataR, precoR, ppd);
                                 cadastro6.adicionarRemedio(novoR);
